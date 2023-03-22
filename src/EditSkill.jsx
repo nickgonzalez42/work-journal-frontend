@@ -12,44 +12,30 @@ export function EditSkill() {
     });
   };
 
-  const handleUpdateSkillInfo = (id, params) => {
-    axios.patch(`http://localhost:3000/skills/${id}.json`, params).then((response) => {
-      const updatedPost = response.data;
-      setSkill(response.data);
+  const handleUpdateInfo = (id, params, table) => {
+    axios.patch(`http://localhost:3000/${table}/${id}.json`, params).then((response) => {
+      // TODO Add Error/Success handling
     });
   };
 
-  const handleSkillSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-
-    handleUpdateSkillInfo(skill.id, params);
-  };
-
-  const handleUpdateResourceInfo = (id, params) => {
-    console.log(id);
-    axios.patch(`http://localhost:3000/resources/${id}.json`, params).then((response) => {
-      const updatedPost = response.data;
-      setSkill(response.data);
-    });
-  };
-
-  const handleResourceSubmit = (event) => {
-    event.preventDefault();
-    const params = new FormData(event.target);
+    const type = params.get("type");
     const id = params.get("id");
-    handleUpdateResourceInfo(id, params);
+    handleUpdateInfo(id, params, type);
   };
 
   useEffect(handleShowSkill, []);
 
   return (
     <div>
-      <form onSubmit={handleSkillSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="skillNameInput">Journal Name</label>
           <input name="name" type="text" className="form-control" id="skillNameInput" defaultValue={skill.name} />
         </div>
+
         <div className="form-group">
           <label htmlFor="skillDescriptionInput">Description</label>
           <input
@@ -70,12 +56,18 @@ export function EditSkill() {
           {/* TODO figure out how to turn type into date */}
           <input name="end" type="text" className="form-control" id="skillEndInput" defaultValue={skill.end} />
         </div>
+        <div className="form-group">
+          <input type="hidden" name="id" defaultValue={skill.id} />
+        </div>
+        <div className="form-group">
+          <input type="hidden" name="type" defaultValue="skills" />
+        </div>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>
       {skill.resources?.map((resource) => (
-        <form onSubmit={handleResourceSubmit} key={resource.id}>
+        <form onSubmit={handleSubmit} key={resource.id}>
           <div className="form-group">
             <label htmlFor="resourceNameInput">Resource Name</label>
             <input
@@ -85,9 +77,6 @@ export function EditSkill() {
               id="resourceNameInput"
               defaultValue={resource.name}
             />
-          </div>
-          <div className="form-group">
-            <input type="hidden" name="id" defaultValue={resource.id} />
           </div>
           <div className="form-group">
             <label htmlFor="resourceDescriptionInput">Description</label>
@@ -119,13 +108,19 @@ export function EditSkill() {
             <label htmlFor="resourceURLInput">URL</label>
             <input name="url" type="text" className="form-control" id="resourceURLInput" defaultValue={resource.url} />
           </div>
+          <div className="form-group">
+            <input type="hidden" name="id" defaultValue={resource.id} />
+          </div>
+          <div className="form-group">
+            <input type="hidden" name="type" defaultValue="resources" />
+          </div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
       ))}
       {skill.projects?.map((project) => (
-        <form key={project.id}>
+        <form onSubmit={handleSubmit} key={project.id}>
           <div className="form-group">
             <label htmlFor="projectNameInput">Project Name</label>
             <input name="name" type="text" className="form-control" id="projectNameInput" defaultValue={project.name} />
@@ -143,6 +138,12 @@ export function EditSkill() {
           <div className="form-group">
             <label htmlFor="projectURLInput">URL</label>
             <input name="url" type="text" className="form-control" id="projectURLInput" defaultValue={project.url} />
+          </div>
+          <div className="form-group">
+            <input type="hidden" name="id" defaultValue={project.id} />
+          </div>
+          <div className="form-group">
+            <input type="hidden" name="type" defaultValue="projects" />
           </div>
           <button type="submit" className="btn btn-primary">
             Submit
