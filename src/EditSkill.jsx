@@ -8,13 +8,11 @@ export function EditSkill() {
 
   const handleShowSkill = () => {
     axios.get(`http://localhost:3000/skills/${params.id}.json`).then((response) => {
-      console.log(response.data);
       setSkill(response.data);
     });
   };
 
   const handleUpdateSkillInfo = (id, params) => {
-    console.log(id);
     axios.patch(`http://localhost:3000/skills/${id}.json`, params).then((response) => {
       const updatedPost = response.data;
       setSkill(response.data);
@@ -26,6 +24,21 @@ export function EditSkill() {
     const params = new FormData(event.target);
 
     handleUpdateSkillInfo(skill.id, params);
+  };
+
+  const handleUpdateResourceInfo = (id, params) => {
+    console.log(id);
+    axios.patch(`http://localhost:3000/resources/${id}.json`, params).then((response) => {
+      const updatedPost = response.data;
+      setSkill(response.data);
+    });
+  };
+
+  const handleResourceSubmit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    const id = params.get("id");
+    handleUpdateResourceInfo(id, params);
   };
 
   useEffect(handleShowSkill, []);
@@ -62,7 +75,7 @@ export function EditSkill() {
         </button>
       </form>
       {skill.resources?.map((resource) => (
-        <form key={resource.id}>
+        <form onSubmit={handleResourceSubmit} key={resource.id}>
           <div className="form-group">
             <label htmlFor="resourceNameInput">Resource Name</label>
             <input
@@ -72,6 +85,9 @@ export function EditSkill() {
               id="resourceNameInput"
               defaultValue={resource.name}
             />
+          </div>
+          <div className="form-group">
+            <input type="hidden" name="id" defaultValue={resource.id} />
           </div>
           <div className="form-group">
             <label htmlFor="resourceDescriptionInput">Description</label>
