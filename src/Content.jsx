@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { JournalIndex } from "./JournalIndex";
 import { ProfileShow } from "./ProfileShow";
 import { EditSkill } from "./EditSkill";
+import { NewSkill } from "./NewSkill";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -14,7 +15,6 @@ export function Content() {
 
   const handleIndexSkills = () => {
     axios.get(`http://localhost:3000/skills.json`).then((response) => {
-      console.log(response.data);
       setSkills(response.data);
     });
   };
@@ -31,6 +31,7 @@ export function Content() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile/:id" element={<ProfileShow />} />
           <Route path="/edit/:id" element={<EditSkill />} />
+          <Route path="/new/:id" element={<NewSkill />} />
         </Routes>
       </div>
     </div>

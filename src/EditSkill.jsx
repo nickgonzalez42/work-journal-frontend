@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { NewResource } from "./NewResource";
+import { NewProject } from "./NewProject";
+
 export function EditSkill() {
   const [skill, setSkill] = useState({});
   const params = useParams();
@@ -119,6 +122,7 @@ export function EditSkill() {
           </button>
         </form>
       ))}
+      <NewResource skill_id={skill.id} />
       {skill.projects?.map((project) => (
         <form onSubmit={handleSubmit} key={project.id}>
           <div className="form-group">
@@ -150,6 +154,7 @@ export function EditSkill() {
           </button>
         </form>
       ))}
+      <NewProject skill_id={skill.id} />
     </div>
   );
 }
