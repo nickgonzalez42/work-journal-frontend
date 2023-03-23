@@ -18,7 +18,7 @@ export function NewProject(props) {
 
   return (
     <div>
-      <h3>Add Resource</h3>
+      <h3>Add Project</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="projectNameInput">Project Name</label>
@@ -31,6 +31,10 @@ export function NewProject(props) {
         <div className="form-group">
           <label htmlFor="projectURLInput">URL</label>
           <input name="url" type="text" className="form-control" id="projectURLInput" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="imageInput">Image</label>
+          <input name="image_file" type="file" className="form-control" id="imageInput" />
         </div>
         <div className="form-group">
           <input type="hidden" name="skill_id" defaultValue={props.skill_id} />

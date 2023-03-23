@@ -43,6 +43,10 @@ export function NewResource(props) {
           <input name="url" type="text" className="form-control" id="resourceURLInput" />
         </div>
         <div className="form-group">
+          <label htmlFor="imageInput">Image</label>
+          <input name="image_file" type="file" className="form-control" id="imageInput" />
+        </div>
+        <div className="form-group">
           <input type="hidden" name="skill_id" defaultValue={props.skill_id} />
         </div>
         <button type="submit" className="btn btn-primary">

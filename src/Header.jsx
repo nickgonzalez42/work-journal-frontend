@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Logout } from "./Logout";
+import { ProfileButton } from "./ProfileButton";
 
 export function Header() {
   let authenticationLinks;
@@ -21,9 +22,14 @@ export function Header() {
     );
   } else {
     authenticationLinks = (
-      <li className="nav-item">
-        <Logout />
-      </li>
+      <>
+        <li className="nav-item">
+          <ProfileButton id={localStorage.user_id} />
+        </li>
+        <li className="nav-item">
+          <Logout />
+        </li>
+      </>
     );
   }
 
