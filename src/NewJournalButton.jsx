@@ -1,11 +1,11 @@
-export function ProfileButton(props) {
+export function NewJournalButton(props) {
   const handleClick = () => {
-    window.location.href = `/profile/${props.id}`;
+    window.location.href = `/new/${props.id}`;
   };
 
   return (
     <a className="nav-link active" href="#" onClick={handleClick}>
-      Profile
+      New Journal
     </a>
   );
 }
