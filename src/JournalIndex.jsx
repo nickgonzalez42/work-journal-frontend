@@ -26,9 +26,11 @@ export function JournalIndex(props) {
             }}
             list="names"
           />
-          <datalist id="names">
+          <datalist className="dropdown-menu" id="names">
             {props.skills.map((skill) => (
-              <option key={skill.id}>{skill.name}</option>
+              <option className="dropdown-item" key={skill.id}>
+                {skill.name}
+              </option>
             ))}
           </datalist>
         </div>
