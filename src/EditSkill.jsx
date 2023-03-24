@@ -29,6 +29,12 @@ export function EditSkill() {
     handleUpdateInfo(id, params, type);
   };
 
+  const handleDeleteSkill = () => {
+    axios.delete(`http://localhost:3000/skills/${params.id}.json`).then((response) => {
+      window.location.href = `/profile/${skill.user_id}`;
+    });
+  };
+
   useEffect(handleShowSkill, []);
 
   return (
@@ -66,7 +72,7 @@ export function EditSkill() {
           <input type="hidden" name="type" defaultValue="skills" />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Edit
         </button>
       </form>
       {skill.resources?.map((resource) => (
@@ -118,7 +124,7 @@ export function EditSkill() {
             <input type="hidden" name="type" defaultValue="resources" />
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Edit
           </button>
         </form>
       ))}
@@ -150,11 +156,15 @@ export function EditSkill() {
             <input type="hidden" name="type" defaultValue="projects" />
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Edit
           </button>
         </form>
       ))}
       <NewProject skill_id={skill.id} />
+      <p>Delete Journal?</p>
+      <button onClick={handleDeleteSkill} type="submit" className="btn btn-danger">
+        Delete
+      </button>
     </div>
   );
 }

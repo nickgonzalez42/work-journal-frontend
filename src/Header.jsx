@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Logout } from "./Logout";
 import { ProfileButton } from "./ProfileButton";
 import { NewJournalButton } from "./NewJournalButton";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export function Header() {
   let authenticationLinks;
@@ -10,12 +12,12 @@ export function Header() {
     authenticationLinks = (
       <>
         <li className="nav-item">
-          <Link className="nav-link active" to="/login">
+          <Link className="text-light nav-link active" to="/login">
             Login
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link active" to="/signup">
+          <Link className="text-light nav-link active" to="/signup">
             Signup
           </Link>
         </li>
@@ -38,10 +40,10 @@ export function Header() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className="navbar navbar-expand-lg bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
-          Journaler
+        <a className="navbar-brand text-light" href="/">
+          Skills Journaler
         </a>
         <button
           className="navbar-toggler"
@@ -54,14 +56,14 @@ export function Header() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className=" collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">{authenticationLinks}</ul>
-          {/* <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="User Search" aria-label="Search" />
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form> */}
+          </form>
         </div>
       </div>
     </nav>

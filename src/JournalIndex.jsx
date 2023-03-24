@@ -5,16 +5,20 @@ import { useState } from "react";
 export function JournalIndex(props) {
   const [searchFilter, setSearchFilter] = useState("");
 
+  // TODO Add deletion of skill
+
   let i = 1;
   return (
     <div>
       <div className="row">
-        <div className="col-sm">
-          {props.profile ? <h2>{props.profileName}'s Journal</h2> : <h2>Recently Updated Journals</h2>}
+        <div className="col-sm-8">
+          {props.profile ? <h2>{props.profileName}'s Recent Journals</h2> : <h2>Recently Updated Journals</h2>}
         </div>
-        <div className="col-sm">
-          Search filter:{" "}
+        <div className="col-sm-4">
           <input
+            className="form-control me-2"
+            placeholder="Search"
+            aria-label="Search"
             type="text"
             value={searchFilter}
             onChange={(event) => {
@@ -24,11 +28,12 @@ export function JournalIndex(props) {
           />
           <datalist id="names">
             {props.skills.map((skill) => (
-              <option>{skill.name}</option>
+              <option key={skill.id}>{skill.name}</option>
             ))}
           </datalist>
         </div>
       </div>
+      <hr />
       {props.skills
         .slice(0)
         .filter((skill) => skill.name.toLowerCase().includes(searchFilter.toLowerCase()))
@@ -60,8 +65,10 @@ export function JournalIndex(props) {
                   <></>
                 )}
               </div>
+              {/* TODO: Add an "updated" section */}
+              {/* <small>Last updated: </small> */}
             </div>
-            <MDBAccordion alwaysOpen initialActive={0}>
+            <MDBAccordion style={{ paddingBottom: 2 + "em" }} alwaysOpen initialActive={0}>
               <MDBAccordionItem collapseId={1} headerTitle="Details">
                 <p>{skill.description}</p>
                 <p>Start Date: {skill.start}</p>
@@ -74,7 +81,6 @@ export function JournalIndex(props) {
                   <p>Ended: {`End Date: ${resource.end}`}</p>
                   <p>
                     {`Source: `}
-                    {/* TODO, Fix this link */}
                     <a rel="noopener noreferrer" target="_blank" href={resource.url}>
                       {resource.url}
                     </a>
@@ -86,7 +92,7 @@ export function JournalIndex(props) {
                 <MDBAccordionItem key={project.id} collapseId={1} headerTitle={`Project: ${project.name}`}>
                   <p>{`Description: ${project.description}`}</p>
                   <p>
-                    {`Demo: `}:{/* TODO, Fix this link */}
+                    {`Demo: `}:
                     <a rel="noopener noreferrer" target="_blank" href={project.url}>
                       {project.url}
                     </a>

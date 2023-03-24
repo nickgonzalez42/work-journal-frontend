@@ -4,7 +4,7 @@ export function NewJournalButton(props) {
   };
 
   return (
-    <a className="nav-link active" href="#" onClick={handleClick}>
+    <a className="text-light nav-link active" href="#" onClick={handleClick}>
       New Journal
     </a>
   );

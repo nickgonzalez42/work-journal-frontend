@@ -46,7 +46,7 @@ export function NewSkill() {
           <input type="hidden" name="user_id" defaultValue={params.id} />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Add
         </button>
       </form>
     </div>

@@ -40,7 +40,7 @@ export function NewProject(props) {
           <input type="hidden" name="skill_id" defaultValue={props.skill_id} />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Add
         </button>
       </form>
     </div>

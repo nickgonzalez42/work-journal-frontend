@@ -5,6 +5,7 @@ import { JournalIndex } from "./JournalIndex";
 import { ProfileShow } from "./ProfileShow";
 import { EditSkill } from "./EditSkill";
 import { NewSkill } from "./NewSkill";
+import { SearchUsers } from "./SearchUsers";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -24,7 +25,7 @@ export function Content() {
   return (
     <div>
       <Header />
-      <div className="container">
+      <div style={{ paddingTop: 1 + "em" }} className="container">
         <Routes>
           <Route path="/" element={<JournalIndex skills={skills} />} />
           <Route path="/signup" element={<Signup />} />
@@ -32,6 +33,7 @@ export function Content() {
           <Route path="/profile/:id" element={<ProfileShow />} />
           <Route path="/edit/:id" element={<EditSkill />} />
           <Route path="/new/:id" element={<NewSkill />} />
+          <Route path="/search/:terms" element={<SearchUsers />} />
         </Routes>
       </div>
     </div>
