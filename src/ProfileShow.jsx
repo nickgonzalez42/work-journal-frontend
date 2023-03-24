@@ -20,7 +20,6 @@ export function ProfileShow(props) {
 
   return (
     <div>
-      <h2>{user.name}'s Profile</h2>
       {localStorage.user_id === params.id ? (
         <a href={`/new/${params.id}`}>
           <h3>New Journal</h3>
@@ -28,7 +27,7 @@ export function ProfileShow(props) {
       ) : (
         <></>
       )}
-      <JournalIndex profile={true} skills={skills} />
+      <JournalIndex profileName={user.name} profile={true} skills={skills} />
     </div>
   );
 }

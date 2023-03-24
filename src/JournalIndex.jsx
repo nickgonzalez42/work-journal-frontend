@@ -3,12 +3,35 @@ import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 import { useState } from "react";
 
 export function JournalIndex(props) {
+  const [searchFilter, setSearchFilter] = useState("");
+
   let i = 1;
   return (
     <div>
-      {props.profile ? <></> : <h2>Recently Updated Journals</h2>}
+      <div className="row">
+        <div className="col-sm">
+          {props.profile ? <h2>{props.profileName}'s Journal</h2> : <h2>Recently Updated Journals</h2>}
+        </div>
+        <div className="col-sm">
+          Search filter:{" "}
+          <input
+            type="text"
+            value={searchFilter}
+            onChange={(event) => {
+              setSearchFilter(event.target.value);
+            }}
+            list="names"
+          />
+          <datalist id="names">
+            {props.skills.map((skill) => (
+              <option>{skill.name}</option>
+            ))}
+          </datalist>
+        </div>
+      </div>
       {props.skills
         .slice(0)
+        .filter((skill) => skill.name.toLowerCase().includes(searchFilter.toLowerCase()))
         .reverse()
         .map((skill) => (
           // TODO Add two of each accordion to a row
