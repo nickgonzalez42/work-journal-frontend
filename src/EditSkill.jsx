@@ -35,6 +35,12 @@ export function EditSkill() {
     });
   };
 
+  const handleDeleteObject = (id, type) => {
+    axios.delete(`http://localhost:3000/${type}s/${id}.json`).then((response) => {
+      window.location.href = `/edit/${skill.id}`;
+    });
+  };
+
   useEffect(handleShowSkill, []);
 
   return (
@@ -126,6 +132,9 @@ export function EditSkill() {
           <button type="submit" className="btn btn-primary">
             Edit
           </button>
+          <button onClick={() => handleDeleteObject(resource.id, "resource")} type="button" className="btn btn-danger">
+            Delete
+          </button>
         </form>
       ))}
       <NewResource skill_id={skill.id} />
@@ -157,6 +166,9 @@ export function EditSkill() {
           </div>
           <button type="submit" className="btn btn-primary">
             Edit
+          </button>
+          <button onClick={() => handleDeleteObject(project.id, "project")} type="button" className="btn btn-danger">
+            Delete
           </button>
         </form>
       ))}
