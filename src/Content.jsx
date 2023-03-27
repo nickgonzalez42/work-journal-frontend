@@ -32,7 +32,7 @@ export function Content() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile/:id" element={<ProfileShow />} />
           <Route path="/edit/:id" element={<EditSkill />} />
-          <Route path="/new/:id" element={<NewSkill />} />
+          <Route path="/new/:id" element={<NewSkill skills={skills} />} />
           <Route path="/search/:terms" element={<SearchUsers />} />
         </Routes>
       </div>

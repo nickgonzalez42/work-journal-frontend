@@ -10,7 +10,6 @@ export function ProfileShow(props) {
 
   const handleShowUser = () => {
     axios.get(`http://localhost:3000/users/${params.id}.json`).then((response) => {
-      console.log(response.data);
       setUser(response.data);
       setSkills(response.data.skills);
     });

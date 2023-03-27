@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { NewResource } from "./NewResource";
 import { NewProject } from "./NewProject";
+import { ToastComponent } from "./ErrorToast";
 
 export function EditSkill() {
   const [skill, setSkill] = useState({});
@@ -16,9 +17,17 @@ export function EditSkill() {
   };
 
   const handleUpdateInfo = (id, params, table) => {
-    axios.patch(`http://localhost:3000/${table}/${id}.json`, params).then((response) => {
-      // TODO Add Error/Success handling
-    });
+    axios
+      .patch(`http://localhost:3000/${table}/${id}.json`, params)
+      .then((response) => {
+        // TODO Add Error/Success handling
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          ".toast".toast("show");
+        }
+      });
   };
 
   const handleSubmit = (event) => {
@@ -45,6 +54,7 @@ export function EditSkill() {
 
   return (
     <div>
+      <ToastComponent />
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="skillNameInput">Journal Name</label>

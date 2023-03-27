@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
-export function NewSkill() {
+export function NewSkill(props) {
+  const [searchFilter, setSearchFilter] = useState("");
   const params = useParams();
 
   const handleCreateSkill = (params) => {
@@ -25,9 +26,26 @@ export function NewSkill() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="skillNameInput">Journal Name</label>
-          <input name="name" type="text" className="form-control" id="skillNameInput" />
+          <input
+            className="form-control me-2"
+            id="skillNameInput"
+            name="name"
+            aria-label="Search"
+            type="text"
+            value={searchFilter}
+            onChange={(event) => {
+              setSearchFilter(event.target.value);
+            }}
+            list="names"
+          />
+          <datalist className="dropdown-menu" id="names">
+            {props.skills.map((skill) => (
+              <option className="dropdown-item" key={skill.id}>
+                {skill.name}
+              </option>
+            ))}
+          </datalist>
         </div>
-
         <div className="form-group">
           <label htmlFor="skillDescriptionInput">Description</label>
           <input name="description" type="text" className="form-control" id="skillDescriptionInput" />

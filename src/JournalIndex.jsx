@@ -6,6 +6,28 @@ export function JournalIndex(props) {
   const [searchFilter, setSearchFilter] = useState("");
 
   // TODO Add deletion of skill
+  let listLength = 0;
+  if (props.profile) {
+    listLength = props.skills.length;
+  } else {
+    listLength = 10;
+  }
+
+  const compareUpdatedInfo = (skill) => {
+    let updates = [];
+    updates.push(skill.updated_at);
+    skill.resources.map((resource) => {
+      updates.push(resource.updated_at);
+    });
+    skill.projects.map((project) => {
+      updates.push(project.updated_at);
+    });
+    updates.sort().reverse();
+    return `${updates[0].slice(5, 7)}/${updates[0].slice(8, 10)}/${updates[0].slice(0, 4)} at ${updates[0].slice(
+      11,
+      19
+    )}`;
+  };
 
   let i = 1;
   return (
@@ -17,7 +39,7 @@ export function JournalIndex(props) {
         <div className="col-sm-4">
           <input
             className="form-control me-2"
-            placeholder="Search"
+            placeholder="Search Posts"
             aria-label="Search"
             type="text"
             value={searchFilter}
@@ -35,14 +57,15 @@ export function JournalIndex(props) {
           </datalist>
         </div>
       </div>
-      <hr />
       {props.skills
         .slice(0)
         .filter((skill) => skill.name.toLowerCase().includes(searchFilter.toLowerCase()))
-        .reverse()
+        .sort((a, b) => compareUpdatedInfo(a) < compareUpdatedInfo(b))
+        .slice(0, listLength)
         .map((skill) => (
           // TODO Add two of each accordion to a row
           <div key={skill.id}>
+            <hr />
             <div className="container">
               <div className="row">
                 <div className="col-sm-8">
@@ -67,8 +90,7 @@ export function JournalIndex(props) {
                   <></>
                 )}
               </div>
-              {/* TODO: Add an "updated" section */}
-              {/* <small>Last updated: </small> */}
+              <small>Last updated: {compareUpdatedInfo(skill)}</small>
             </div>
             <MDBAccordion style={{ paddingBottom: 2 + "em" }} alwaysOpen initialActive={0}>
               <MDBAccordionItem collapseId={1} headerTitle="Details">

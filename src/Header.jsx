@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import { Logout } from "./Logout";
 import { ProfileButton } from "./ProfileButton";
 import { NewJournalButton } from "./NewJournalButton";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 export function Header() {
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    const search = params.get("search");
+    window.location.href = `/search/${search}`;
+  };
+
   let authenticationLinks;
 
   if (localStorage.jwt === undefined) {
@@ -58,8 +63,14 @@ export function Header() {
         </button>
         <div className=" collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">{authenticationLinks}</ul>
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="User Search" aria-label="Search" />
+          <form onSubmit={handleSearchSubmit} className="d-flex" role="search">
+            <input
+              name="search"
+              className="form-control me-2"
+              type="search"
+              placeholder="User Search"
+              aria-label="Search"
+            />
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
