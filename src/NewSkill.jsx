@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export function NewSkill(props) {
   const [searchFilter, setSearchFilter] = useState("");
+
   const params = useParams();
 
   const handleCreateSkill = (params) => {

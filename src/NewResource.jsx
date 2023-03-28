@@ -1,12 +1,22 @@
 import axios from "axios";
+import { useState } from "react";
 
 export function NewResource(props) {
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+
   const handleCreateResource = (params) => {
-    axios.post(`http://localhost:3000/resources.json`, params).then((response) => {
-      // TODO Add Error/Success handling
-      console.log(response.data);
-      window.location.href = `/edit/${props.skill_id}`;
-    });
+    axios
+      .post(`http://localhost:3000/resources.json`, params)
+      .then((response) => {
+        // TODO Add Error/Success handling
+        console.log(response.data);
+        window.location.href = `/edit/${props.skill_id}`;
+      })
+      .catch(function (error) {
+        if (error.response) {
+          setShowErrorMessage(true);
+        }
+      });
   };
 
   const handleSubmit = (event) => {
@@ -18,6 +28,13 @@ export function NewResource(props) {
 
   return (
     <div>
+      {showErrorMessage ? (
+        <div className="alert alert-danger fixed" role="alert">
+          Please login to continue.
+        </div>
+      ) : (
+        <></>
+      )}
       <h3>Add Resource</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

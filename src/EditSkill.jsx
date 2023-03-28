@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 
 import { NewResource } from "./NewResource";
 import { NewProject } from "./NewProject";
-import { ToastComponent } from "./ErrorToast";
 
 export function EditSkill() {
+  const [showErrorMessage, setShowErrorMessage] = useState({ table: "", show: false });
+  const [showSuccessMessage, setShowSuccessMessage] = useState({ table: "", show: false });
   const [skill, setSkill] = useState({});
   const params = useParams();
 
@@ -21,11 +22,11 @@ export function EditSkill() {
       .patch(`http://localhost:3000/${table}/${id}.json`, params)
       .then((response) => {
         // TODO Add Error/Success handling
+        setShowSuccessMessage({ table: table, show: true });
       })
       .catch(function (error) {
         if (error.response) {
-          console.log(error.response.data);
-          ".toast".toast("show");
+          setShowErrorMessage({ table: table, show: true });
         }
       });
   };
@@ -39,22 +40,48 @@ export function EditSkill() {
   };
 
   const handleDeleteSkill = () => {
-    axios.delete(`http://localhost:3000/skills/${params.id}.json`).then((response) => {
-      window.location.href = `/profile/${skill.user_id}`;
-    });
+    axios
+      .delete(`http://localhost:3000/skills/${params.id}.json`)
+      .then((response) => {
+        window.location.href = `/profile/${skill.user_id}`;
+      })
+      .catch(function (error) {
+        setShowErrorMessage({ table: "skills", show: true });
+      });
   };
 
   const handleDeleteObject = (id, type) => {
-    axios.delete(`http://localhost:3000/${type}s/${id}.json`).then((response) => {
-      window.location.href = `/edit/${skill.id}`;
-    });
+    axios
+      .delete(`http://localhost:3000/${type}s/${id}.json`)
+      .then((response) => {
+        window.location.href = `/edit/${skill.id}`;
+      })
+      .catch(function (error) {
+        setShowErrorMessage({ table: type + "s", show: true });
+        console.log(type + "s");
+        console.log("running");
+        console.log(showErrorMessage);
+      });
   };
 
   useEffect(handleShowSkill, []);
 
   return (
     <div>
-      <ToastComponent />
+      {showErrorMessage.show && showErrorMessage.table === "skills" ? (
+        <div className="alert alert-danger fixed" role="alert">
+          Please login to continue.
+        </div>
+      ) : (
+        <></>
+      )}
+      {showSuccessMessage.show && showSuccessMessage.table === "skills" ? (
+        <div className="alert alert-success fixed" role="alert">
+          Update successful.
+        </div>
+      ) : (
+        <></>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="skillNameInput">Journal Name</label>
@@ -91,6 +118,20 @@ export function EditSkill() {
           Edit
         </button>
       </form>
+      {showErrorMessage.show && showErrorMessage.table === "resources" ? (
+        <div className="alert alert-danger fixed" role="alert">
+          Please login to continue.
+        </div>
+      ) : (
+        <></>
+      )}
+      {showSuccessMessage.show && showSuccessMessage.table === "resources" ? (
+        <div className="alert alert-success fixed" role="alert">
+          Update successful.
+        </div>
+      ) : (
+        <></>
+      )}
       {skill.resources?.map((resource) => (
         <form onSubmit={handleSubmit} key={resource.id}>
           <div className="form-group">
@@ -148,6 +189,20 @@ export function EditSkill() {
         </form>
       ))}
       <NewResource skill_id={skill.id} />
+      {showErrorMessage.show && showErrorMessage.table === "projects" ? (
+        <div className="alert alert-danger fixed" role="alert">
+          Please login to continue.
+        </div>
+      ) : (
+        <></>
+      )}
+      {showSuccessMessage.show && showSuccessMessage.table === "projects" ? (
+        <div className="alert alert-success fixed" role="alert">
+          Update successful.
+        </div>
+      ) : (
+        <></>
+      )}
       {skill.projects?.map((project) => (
         <form onSubmit={handleSubmit} key={project.id}>
           <div className="form-group">
