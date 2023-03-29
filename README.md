@@ -111,6 +111,7 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 Install Node.js and npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
 Install Vite: https://vitejs.dev/guide/
 
 ### Installation
