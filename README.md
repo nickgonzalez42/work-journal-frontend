@@ -36,9 +36,9 @@
   <h3 align="center">Work Journal Frontend</h3>
 
   <p align="center">
-    A backend API using the Ruby on Rails framework for <!-- TODO turn this into a link --> Work Journal. 
+    A user-facing website created using React/Bootstrap and developed in conjunction with a Ruby on Rails backend. 
     <br />
-    <a href="https://github.com/nickgonzalez42/work-journal-frontend"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/nickgonzalez42/work-journal"><strong>Explore the backend»</strong></a>
     <br />
     <br />
     <a href="https://github.com/nickgonzalez42/work-journal-frontend">View Demo</a>
