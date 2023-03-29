@@ -43,7 +43,7 @@ export function NewProject(props) {
         </div>
         <div className="form-group">
           <label htmlFor="projectDescriptionInput">Description</label>
-          <input name="description" type="text" className="form-control" id="projectDescriptionInput" />
+          <textarea rows="5" name="description" type="text" className="form-control" id="projectDescriptionInput" />
         </div>
         <div className="form-group">
           <label htmlFor="projectURLInput">URL</label>
@@ -56,7 +56,7 @@ export function NewProject(props) {
         <div className="form-group">
           <input type="hidden" name="skill_id" defaultValue={props.skill_id} />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button style={{ marginTop: 10 }} type="submit" className="btn btn-primary">
           Add
         </button>
       </form>

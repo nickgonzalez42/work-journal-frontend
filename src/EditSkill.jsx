@@ -69,14 +69,14 @@ export function EditSkill() {
   return (
     <div>
       {showErrorMessage.show && showErrorMessage.table === "skills" ? (
-        <div className="alert alert-danger fixed" role="alert">
+        <div style={{ marginTop: 1 }} className="alert alert-danger fixed" role="alert">
           Please login to continue.
         </div>
       ) : (
         <></>
       )}
       {showSuccessMessage.show && showSuccessMessage.table === "skills" ? (
-        <div className="alert alert-success fixed" role="alert">
+        <div style={{ marginTop: 1 }} className="alert alert-success fixed" role="alert">
           Update successful.
         </div>
       ) : (
@@ -90,8 +90,9 @@ export function EditSkill() {
 
         <div className="form-group">
           <label htmlFor="skillDescriptionInput">Description</label>
-          <input
+          <textarea
             name="description"
+            rows="5"
             type="text"
             className="form-control"
             id="skillDescriptionInput"
@@ -100,12 +101,10 @@ export function EditSkill() {
         </div>
         <div className="form-group">
           <label htmlFor="skillStartInput">Start Date</label>
-          {/* TODO figure out how to turn type into date */}
           <input name="start" type="text" className="form-control" id="skillStartInput" defaultValue={skill.start} />
         </div>
         <div className="form-group">
           <label htmlFor="skillEndInput">End Date</label>
-          {/* TODO figure out how to turn type into date */}
           <input name="end" type="text" className="form-control" id="skillEndInput" defaultValue={skill.end} />
         </div>
         <div className="form-group">
@@ -114,19 +113,19 @@ export function EditSkill() {
         <div className="form-group">
           <input type="hidden" name="type" defaultValue="skills" />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button style={{ marginTop: 10 }} type="submit" className="btn btn-primary">
           Edit
         </button>
       </form>
       {showErrorMessage.show && showErrorMessage.table === "resources" ? (
-        <div className="alert alert-danger fixed" role="alert">
+        <div style={{ marginTop: 1 }} className="alert alert-danger fixed" role="alert">
           Please login to continue.
         </div>
       ) : (
         <></>
       )}
       {showSuccessMessage.show && showSuccessMessage.table === "resources" ? (
-        <div className="alert alert-success fixed" role="alert">
+        <div style={{ marginTop: 1 }} className="alert alert-success fixed" role="alert">
           Update successful.
         </div>
       ) : (
@@ -146,9 +145,10 @@ export function EditSkill() {
           </div>
           <div className="form-group">
             <label htmlFor="resourceDescriptionInput">Description</label>
-            <input
+            <textarea
               name="description"
               type="text"
+              rows="5"
               className="form-control"
               id="resourceDescriptionInput"
               defaultValue={resource.description}
@@ -156,7 +156,6 @@ export function EditSkill() {
           </div>
           <div className="form-group">
             <label htmlFor="resourceStartInput">Start Date</label>
-            {/* TODO figure out how to turn type into date */}
             <input
               name="start"
               type="text"
@@ -167,7 +166,6 @@ export function EditSkill() {
           </div>
           <div className="form-group">
             <label htmlFor="resourceEndInput">End Date</label>
-            {/* TODO figure out how to turn type into date */}
             <input name="end" type="text" className="form-control" id="resourceEndInput" defaultValue={resource.end} />
           </div>
           <div className="form-group">
@@ -180,24 +178,29 @@ export function EditSkill() {
           <div className="form-group">
             <input type="hidden" name="type" defaultValue="resources" />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button style={{ marginTop: 10, marginRight: 5, marginBottom: 10 }} type="submit" className="btn btn-primary">
             Edit
           </button>
-          <button onClick={() => handleDeleteObject(resource.id, "resource")} type="button" className="btn btn-danger">
+          <button
+            style={{ marginTop: 10, marginBottom: 10 }}
+            onClick={() => handleDeleteObject(resource.id, "resource")}
+            type="button"
+            className="btn btn-danger"
+          >
             Delete
           </button>
         </form>
       ))}
-      <NewResource skill_id={skill.id} />
+
       {showErrorMessage.show && showErrorMessage.table === "projects" ? (
-        <div className="alert alert-danger fixed" role="alert">
+        <div style={{ marginTop: 1 }} className="alert alert-danger fixed" role="alert">
           Please login to continue.
         </div>
       ) : (
         <></>
       )}
       {showSuccessMessage.show && showSuccessMessage.table === "projects" ? (
-        <div className="alert alert-success fixed" role="alert">
+        <div style={{ marginTop: 1 }} className="alert alert-success fixed" role="alert">
           Update successful.
         </div>
       ) : (
@@ -211,11 +214,12 @@ export function EditSkill() {
           </div>
           <div className="form-group">
             <label htmlFor="projectDescriptionInput">Description</label>
-            <input
+            <textarea
               name="description"
               type="text"
               className="form-control"
               id="projectDescriptionInput"
+              rows="5"
               defaultValue={project.description}
             />
           </div>
@@ -229,19 +233,27 @@ export function EditSkill() {
           <div className="form-group">
             <input type="hidden" name="type" defaultValue="projects" />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button style={{ marginTop: 10, marginRight: 5, marginBottom: 10 }} type="submit" className="btn btn-primary">
             Edit
           </button>
-          <button onClick={() => handleDeleteObject(project.id, "project")} type="button" className="btn btn-danger">
+          <button
+            style={{ marginTop: 10, marginBottom: 10 }}
+            onClick={() => handleDeleteObject(project.id, "project")}
+            type="button"
+            className="btn btn-danger"
+          >
             Delete
           </button>
         </form>
       ))}
+      <NewResource skill_id={skill.id} />
       <NewProject skill_id={skill.id} />
-      <p>Delete Journal?</p>
-      <button onClick={handleDeleteSkill} type="submit" className="btn btn-danger">
-        Delete
-      </button>
+      <div style={{ marginBottom: 30, marginTop: 30 }} className="row">
+        <p className="col-sm-2">Delete Journal?</p>
+        <button onClick={handleDeleteSkill} type="submit" className="col-sm-1 btn btn-danger">
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

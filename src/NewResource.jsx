@@ -43,16 +43,14 @@ export function NewResource(props) {
         </div>
         <div className="form-group">
           <label htmlFor="resourceDescriptionInput">Description</label>
-          <input name="description" type="text" className="form-control" id="resourceDescriptionInput" />
+          <textarea rows="5" name="description" type="text" className="form-control" id="resourceDescriptionInput" />
         </div>
         <div className="form-group">
           <label htmlFor="resourceStartInput">Start Date</label>
-          {/* TODO figure out how to turn type into date */}
           <input name="start" type="text" className="form-control" id="resourceStartInput" />
         </div>
         <div className="form-group">
           <label htmlFor="resourceEndInput">End Date</label>
-          {/* TODO figure out how to turn type into date */}
           <input name="end" type="text" className="form-control" id="resourceEndInput" />
         </div>
         <div className="form-group">
@@ -66,8 +64,8 @@ export function NewResource(props) {
         <div className="form-group">
           <input type="hidden" name="skill_id" defaultValue={props.skill_id} />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button style={{ marginTop: 10 }} type="submit" className="btn btn-primary">
+          Add
         </button>
       </form>
     </div>

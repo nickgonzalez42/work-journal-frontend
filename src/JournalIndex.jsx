@@ -29,6 +29,12 @@ export function JournalIndex(props) {
     )}`;
   };
 
+  const imgStyle = {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+  };
+
   let i = 1;
   return (
     <div>
@@ -100,7 +106,7 @@ export function JournalIndex(props) {
               </MDBAccordionItem>
               {skill.resources.map((resource) => (
                 <MDBAccordionItem key={resource.id} collapseId={1} headerTitle={`Resource: ${resource.name}`}>
-                  <img className="d-flex justify-content-center" height="200" src={resource.image} />
+                  <img style={imgStyle} height="200" src={resource.image} />
                   <p>{`Description: ${resource.description}`}</p>
                   <p>Started: {`Start Date: ${resource.start}`}</p>
                   <p>Ended: {`End Date: ${resource.end}`}</p>
@@ -114,7 +120,7 @@ export function JournalIndex(props) {
               ))}
               {skill.projects.map((project) => (
                 <MDBAccordionItem key={project.id} collapseId={1} headerTitle={`Project: ${project.name}`}>
-                  <img height="200" src={project.image} />
+                  <img style={imgStyle} height="200" src={project.image} />
                   <p>{`Description: ${project.description}`}</p>
                   <p>
                     {`Demo: `}
