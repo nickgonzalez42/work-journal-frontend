@@ -98,8 +98,8 @@ The Resource and Project models utilize the Cloudinary gem for uploading user pr
 
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+[![React][React.js]][React-url]
+[![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
