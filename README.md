@@ -115,26 +115,23 @@ Install Vite: https://vitejs.dev/guide/
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you can instruct your audience on installing and setting up your app._
 
 1. Clone the repo
    ```sh
    git clone https://github.com/nickgonzalez42/work-journal.git
    ```
-2. Install gems
+2. Install dependencies
    ```sh
-   bundle install
+   npm install
+   npm install axios --save
+   npm install react-router-dom@6
    ```
-4. Create your database, run the migrations, and create seeds
+3. Run server
    ```sh
-   rails db:create
-   rails db:migrate
-   rails db:seed
+   npm run dev
    ```
-5. Run the local server
-   ```sh
-   rails server
-   ```
+4. Visit localhost:5173/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
