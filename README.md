@@ -84,13 +84,11 @@
 
 The inspiration for this project came from wishing I could reference something like a "how I learned to code" guide WITHOUT watching a 32-minute YouTube video. Conceptually, this is a website where users can log what resources they used to learn any given skill, how the felt about it, how long it took them, and any projects they completed along the way. 
 
-The backend design includes:
-* Users who can signup, login, and logout. All created content is assigned to the active user at creation.
-* Skills that have a start date, end date and description.
-* Resources assigned to a skill that have name, description, url, start, and end date attributes.
-* Projects assigned to a skill that have name, description, and url attributes.
-
-The Resource and Project models utilize the Cloudinary gem for uploading user provided images. Upon deletion of those models, the images are also deleted in the Cloudinary database.
+The frontend enables users to:
+* Signup, login, and logout. Updating or creating journals is disabled unless logged in.
+* Search for posts and users.
+* View profile pages.
+* Generate journals with the option to upload images.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -112,7 +110,8 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-You'll need Ruby on Rails installed on your machine, instructions for which can be found here: https://guides.rubyonrails.org/v5.0/getting_started.html
+Install Node.js and npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+Install Vite: https://vitejs.dev/guide/
 
 ### Installation
 
