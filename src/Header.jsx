@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Logout } from "./Logout";
 import { ProfileButton } from "./ProfileButton";
 import { NewJournalButton } from "./NewJournalButton";
+import logo from "/logo.png";
 
 export function Header() {
   const handleSearchSubmit = (event) => {
@@ -48,7 +49,8 @@ export function Header() {
     <nav className="navbar navbar-expand-lg bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand text-light" href="/">
-          Skills Journaler
+          <img style={{ marginRight: 5 }} src={logo} width="30" height="30" alt="" />
+          Work Journal
         </a>
         <button
           className="navbar-toggler"
